@@ -1,0 +1,2 @@
+class GpsController < ApplicationController
+end
