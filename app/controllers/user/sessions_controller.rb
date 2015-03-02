@@ -7,9 +7,18 @@ class User::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    resource = User.find_for_database_authentication(email: params[:user_login][:email])
+    return invalid_login_attempt unless resource
+
+    if resource.valid_password?(params[:user_login][:password])
+      sign_in("user", resource)
+      resource.ensure_authentication_token!
+      render 'api/v1/sessions/new.json.jbuilder', status: 201
+      return
+    end
+    invalid_login_attempt
+   end
 
   # DELETE /resource/sign_out
   # def destroy
