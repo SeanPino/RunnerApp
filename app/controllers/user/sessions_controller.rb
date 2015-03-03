@@ -15,15 +15,16 @@ class User::SessionsController < Devise::SessionsController
       sign_in("user", resource)
       resource.ensure_authentication_token!
       render 'api/v1/sessions/new.json.jbuilder', status: 201
+      #redirect_to "/profile/show/"
       return
     end
     invalid_login_attempt
    end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+   def destroy
+    super
+   end
 
   # protected
 

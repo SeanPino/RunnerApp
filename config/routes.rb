@@ -1,14 +1,25 @@
 Labyrinth::Application.routes.draw do
-  devise_for :users, controllers:{
+
+  #get 'users/sign_in'
+
+  root 'profile#show'
+  devise_for :users
+  #resources :users
+                    # controllers:{
                     #   sessions: 'sessions'
-                   }
+                   #}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  
 
+  #get 'users/:id' => 'user#show'
+  #get 'users/:id' => 'user#index'
+  #get 'profile/:id' => 'profile#show'
+  #resources :profile
+
+  #match 'users/sign_out' => "devise/sessions#destroy"
 
   # You can have the root of your site routed with "root"
-   #root 'welcome#index'
+   #root 'users'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
